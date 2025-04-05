@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import Image from "next/image";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 interface Post {
     prompt: string;
@@ -22,18 +22,7 @@ interface PromptCardProps {
     handleDelete?: () => void;
 }
 
-interface Session {
-    user?: {
-        id?: string;
-        _id?: string;
-        name?: string | null;
-        email?: string | null;
-        image?: string | null;
-    };
-}
-
 const PromptCard = ({
-    key,
     post,
     handleTagClick,
     handleEdit,
@@ -41,7 +30,6 @@ const PromptCard = ({
 }: PromptCardProps) => {
     const {data : session} = useSession();
     const pathName = usePathname();  
-    const router = useRouter();
     const [copied, setCopied] = useState('');
     const handleCopy = () => {
         setCopied(post.prompt) 
