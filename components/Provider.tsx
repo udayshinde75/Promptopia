@@ -3,9 +3,19 @@
 import { ReactNode } from 'react';
 import { SessionProvider } from 'next-auth/react';
 
+interface CustomSession {
+  user?: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+    id?: string;
+  };
+  expires: string;
+}
+
 interface ProviderProps {
-  children: ReactNode; // Properly typing the children
-  session?: any; // You can replace `any` with the correct session type if known
+  children: ReactNode;
+  session?: CustomSession | null;
 }
 
 const Provider: React.FC<ProviderProps> = ({ children, session }) => {
