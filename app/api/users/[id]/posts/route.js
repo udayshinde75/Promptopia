@@ -1,7 +1,7 @@
 import Prompt from "../../../../../models/prompt";
 import { connectToDB } from "../../../../../utils/database";
 
-export const GET = async (request, { params }) => {
+export const GET = async ( { params }) => {
     try {
         await connectToDB();
         
@@ -15,6 +15,7 @@ export const GET = async (request, { params }) => {
             headers: { "Content-Type": "application/json" },
         });
     } catch (error) {
+        console.log(error);
         return new Response("Failed to fetch all prompts", {
             status: 500,
         });

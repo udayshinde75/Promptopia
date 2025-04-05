@@ -1,7 +1,7 @@
 import Prompt from "../../../models/prompt";
 import { connectToDB } from '../../../utils/database';
 
-export const GET = async (request) => {
+export const GET = async () => {
   try {
     await connectToDB();
     const prompts = await Prompt.find({}).populate('creator');
@@ -12,6 +12,7 @@ export const GET = async (request) => {
     });
     
   } catch (error) {
+    console.log(error);
     return new Response('Failed to fetch all prompts', {
       status: 500,
     });
