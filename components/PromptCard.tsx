@@ -2,18 +2,20 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 interface Post {
-    prompt: string;
+    _id: string;
     tag: string;
+    // Add other properties that your post object has
     creator: {
-        image: string;
-        username: string;
-        email: string;
-        _id: string;
+      _id: string;
+      username: string;
+      email: string;
+      image: string;
     };
-}
-
+    prompt: string;
+    // Include any other fields you use
+  }
 interface PromptCardProps {
     key: string;
     post: Post;

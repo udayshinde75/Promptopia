@@ -1,10 +1,24 @@
 import PromptCard from "./PromptCard"
 import { getSession } from "next-auth/react";
 
+interface Post {
+  _id: string;
+  tag: string;
+  // Add other properties that your post object has
+  creator: {
+    _id: string;
+    username: string;
+    email: string;
+    image: string;
+  };
+  prompt: string;
+  // Include any other fields you use
+}
+
 interface ProfileProps {
     name: string;
     desc: string;
-    data: any[];
+    data: Post[];
     handleEdit?: (post: any) => void;
     handleDelete?: (post: any) => void;
     handleTagClick?: (tag: string) => void;
@@ -27,7 +41,7 @@ const Profile: React.FC<ProfileProps> = ({
             {desc}
         </p>
         <div className="mt-10 prompt_layout">
-             {data.map((post: any) => (
+             {data.map((post: Post) => (
                 <PromptCard
                     key={post._id}
                     post={post}
